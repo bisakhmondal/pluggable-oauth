@@ -1,16 +1,21 @@
 ## The project is created to demonstrate how the OAuth2.0 authentication flow is going to be implemented (as a proposal).
 
 - Though there are several identity providers to authenticate users using OAuth along with OpenID Connect, the project fully respects the admin's preferences of choosing one provider over the another.
+
 - Currently, this project supports authentication using `Google`, `Facebook`, `Github`, but the way the project has been developed, it provides a fully flexible way to incorporate multiple identity providers in future (if necessary).
+
 - As the preference of the admin is the top priority, there may be cases when one or two or no oauth identity provider has been chosen by the admin. `So instead of polluting the UI with the icons of all supported identity providers, it provides a kind of pluggable feature to add or remove the icons from the login page by simple editing of JSON for the frontend.`
+
+**Note**: This is a secure design by default, as the browser only fetches the authorization code and sends it to the backend. The exchange of access token and userinfo using `client_secret` is not visible to the frontend.
 
 The UI / Login screen only shows the icons for OAuth for which an entry has been made in the [oauth-config.json](./go-auth-frontend/src/oauth-config.json)
 for eg.
 ```json
 {
-  "provider":"Google",
+  "provider":"google",
   "backend_url": "google/login",
-  "icon": "https://cdn.pixabay.com/photo/2015/12/11/11/43/google-1088004_1280.png"
+  "icon": "https://cdn.pixabay.com/photo/2015/12/11/11/43/google-1088004_1280.png",
+  "status" : "active"
 }
 ```
 If the entry has been removed from the json, there will be no option in the dashboard to `login using google`.

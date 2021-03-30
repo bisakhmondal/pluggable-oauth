@@ -3,18 +3,21 @@
     {
         "provider":"facebook",
         "backend_url": "facebook/login",
-        "icon": "https://icons-for-free.com/iconfiles/png/512/facebook+logo+logo+website+icon-1320190502625926346.png"
+        "icon": "https://icons-for-free.com/iconfiles/png/512/facebook+logo+logo+website+icon-1320190502625926346.png",
+        "status" : "active"
 
     },
     {
-        "provider":"Google",
+        "provider":"google",
         "backend_url": "google/login",
-        "icon": "https://cdn.pixabay.com/photo/2015/12/11/11/43/google-1088004_1280.png"
+        "icon": "https://cdn.pixabay.com/photo/2015/12/11/11/43/google-1088004_1280.png",
+        "status" : "active"
     },
     {
-        "provider":"Github",
+        "provider":"github",
         "backend_url": "github/login",
-        "icon": "https://icons-for-free.com/iconfiles/png/512/github+icon-1320168274457504277.png"
+        "icon": "https://icons-for-free.com/iconfiles/png/512/github+icon-1320168274457504277.png",
+        "status" : "active"
 
     }
 ]

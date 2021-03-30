@@ -1,52 +1,26 @@
 import React from 'react'
+import {Switch, BrowserRouter as Router, Route} from "react-router-dom"
+import Login from "./components/login"
+import LoginCallback from "./components/loginCallback"
+
 import doc from "./oauth-config.json"
-import "axios"
-import axios from 'axios'
-const BACKEND_URI = "http://localhost:4000/"
-
-
 const App = () => {
-  const [uri, setUri] = React.useState(null)
-  const click = async (d) => {
-    console.log(d)
-    try {
 
-      const resp = await axios.get(BACKEND_URI + d.backend_url)
-
-      console.log(resp.data)
-      setUri(resp.data)
+  const google = doc.filter(d => d.provider==="google")[0]
+  const facebook = doc.filter(d => d.provider==="facebook")[0]
+  const github = doc.filter(d => d.provider==="github")[0]
 
 
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const getButton = (d) => {
-    return (
-      <span>
-        <img src={d.icon} onClick={() => click(d)} height="70" width="70" style={{ padding: 20 }} />
-        <h3>{d.provider}</h3>
-      </span>
-    )
-  }
-  const elts = doc.map(d => getButton(d))
   return (
-    <div >
-      {uri ?
-        <>
-          <h2>Click me</h2>
-          <br />
-          <a href={uri}>{uri}</a>
-        </>
-        :
-
-        <div style={{ display: "flex", justifyContent: "center", marginTop: 100 }}>
-          <p>Login Options</p>
-          {elts}
-        </div>
-      }
-    </div>
+  <Router>
+    <Switch>
+    <Route path="/login" component={Login} />
+    <Route path="/" exact component={Login} />
+    <Route path="/google/callback" component={(props) => <LoginCallback  {...props} uri={google.backend_url+"/callback"}/>}  />
+    <Route path="/facebook/callback" component={(props) => <LoginCallback  {...props} uri={facebook.backend_url+"/callback"}/>}  />
+    <Route path="/github/callback" component={(props) => <LoginCallback  {...props} uri={github.backend_url+"/callback"}/>}  />
+    </Switch>
+  </Router>
   )
 }
 

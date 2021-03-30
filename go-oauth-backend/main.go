@@ -32,21 +32,21 @@ func init() {
 	fmt.Println(conf)
 
 	googleOauthConfig = &oauth2.Config{
-		RedirectURL:  "http://localhost:4000/google/callback",
+		RedirectURL:  "http://localhost:3000/google/callback",
 		ClientID:     conf.Credentials.Google.Id,
 		ClientSecret: conf.Credentials.Google.Secret,
 		Scopes:       []string{"https://www.googleapis.com/auth/userinfo.email"},
 		Endpoint:     google.Endpoint,
 	}
 	fbOauthConfig = &oauth2.Config{
-		RedirectURL:  "http://localhost:4000/facebook/callback",
+		RedirectURL:  "http://localhost:3000/facebook/callback",
 		ClientID:     conf.Credentials.Facebook.Id,
 		ClientSecret: conf.Credentials.Facebook.Secret,
 		Scopes:       []string{"email"},
 		Endpoint:     facebook.Endpoint,
 	}
 	ghOauthConfig = &oauth2.Config{
-		RedirectURL:  "http://localhost:4000/github/callback",
+		RedirectURL:  "http://localhost:3000/github/callback",
 		ClientID:     conf.Credentials.Github.Id,
 		ClientSecret: conf.Credentials.Github.Secret,
 		Scopes:       []string{"email"},
@@ -62,9 +62,9 @@ func main() {
 	mx.HandleFunc("/google/login", googleLogin)
 	mx.HandleFunc("/facebook/login", facebookLogin)
 	mx.HandleFunc("/github/login", githubLogin)
-	mx.HandleFunc("/google/callback", googleCallback)
-	mx.HandleFunc("/facebook/callback", facebookCallback)
-	mx.HandleFunc("/github/callback", githubCallback)
+	mx.HandleFunc("/google/login/callback", googleCallback)
+	mx.HandleFunc("/facebook/login/callback", facebookCallback)
+	mx.HandleFunc("/github/login/callback", githubCallback)
 
 	corsH := cors.New(cors.Options{
 		AllowedOrigins:   []string{"http://localhost:3000", "http://127.0.0.1:3000"},
