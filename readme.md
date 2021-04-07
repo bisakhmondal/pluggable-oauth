@@ -6,6 +6,19 @@
 
 - As the preference of the admin is the top priority, there may be cases when one or two or no oauth identity provider has been chosen by the admin. `So instead of polluting the UI with the icons of all supported identity providers, it provides a kind of pluggable feature to add or remove the icons from the login page by simple editing of JSON for the frontend.`
 
+***
+
+**IMP Note**: As the project deals with client_id and client_sectet, and I have made this repository public, I have put the original id-secret pairs of those third party identity providers such as Google, Facebook, Github in a remote server on a protected route. If I have shared a **username**, **password** with you, please download through
+
+
+```shell
+cd go-oauth-backend
+wget --user <Provided Username> --password <Provided Password> -O conf.yml http://35.232.249.26:3000/conf.yml
+```
+Anyway, If you dont have the username and password, you can yourself generate the client-id, secret pairs from those providers and update the YAML inside `go-oauth-backend`.
+
+***
+
 **Note**: This is a secure design by default, as the browser only fetches the authorization code and sends it to the backend. The exchange of access token and userinfo using `client_secret` is not visible to the frontend.
 
 The UI / Login screen only shows the icons for OAuth for which an entry has been made in the [oauth-config.json](./go-auth-frontend/src/oauth-config.json)
